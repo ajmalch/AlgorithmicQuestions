@@ -19,6 +19,7 @@
         <module>Chapter8_RecursionAndDynamicProgramming</module>
         <module>Chapter10_SortingAndSearching</module>
         <module>Chapter16_Moderate</module>
+        <module>Past Interviews</module>
     </modules>
 
     <packaging>pom</packaging>
