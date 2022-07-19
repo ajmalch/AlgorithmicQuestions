@@ -12,8 +12,15 @@ import java.util.Map;
  */
 public class TwoSum {
 
+    /**
+     * O(n) Time complexity and O(n) space complexity
+     *
+     * @param nums   input array
+     * @param target target sum
+     * @return indices of two numbers adding upto target sum
+     */
     public int[] twoSum(int[] nums, int target) {
-        
+
         //map to store index as value for comapring against target;
         Map<Integer, Integer> map = new HashMap<>();
 
