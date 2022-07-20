@@ -21,13 +21,12 @@ class GenerateParenthesisTest {
     @Test
     void generateParenthesisTest2() {
         final var parentheses = generateParenthesis.generateParenthesis(2);
-        assertEquals(List.of("(())", "()()"), parentheses);
+        assertThat(parentheses, containsInAnyOrder("(())", "()()"));
     }
 
     @Test
     void generateParenthesisTest3() {
         final var parentheses = generateParenthesis.generateParenthesis(3);
-        System.out.println(parentheses);
-        assertThat(List.of("((()))", "(())()", "()(())", "()()()", "(()())"), containsInAnyOrder(parentheses.toArray()));
+        assertThat(parentheses, containsInAnyOrder("((()))", "(())()", "()(())", "()()()", "(()())"));
     }
 }
