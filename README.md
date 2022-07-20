@@ -1,1 +1,1 @@
-# AlgorithmicQuestions and their soltions in java
+# AlgorithmicQuestions and their solutions in java
