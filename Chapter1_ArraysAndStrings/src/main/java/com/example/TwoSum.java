@@ -12,6 +12,9 @@ import java.util.Map;
  */
 public class TwoSum {
 
+
+    //Time complexity O(n) space complexity O(n)
+
     /**
      * O(n) Time complexity and O(n) space complexity
      *
@@ -19,6 +22,7 @@ public class TwoSum {
      * @param target target sum
      * @return indices of two numbers adding upto target sum
      */
+
     public int[] twoSum(int[] nums, int target) {
 
         //map to store index as value for comapring against target;
