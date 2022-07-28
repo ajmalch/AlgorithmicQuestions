@@ -10,14 +10,8 @@ output 5 ie {3, -2, 4}
 
 public class ContiguousSubArraySum {
 
-    public static void main(String[] args) {
 
-        System.out.println(getContiguousSum(1, 2, -4, 2, -1, 3));
-        System.out.println(getContiguousSum(-3, -5, -1, -2, -1));
-        System.out.println(getContiguousSum(-3, -5, -7));
-    }
-
-    public static int getContiguousSum(int... input) {
+    public int getContiguousSum(int... input) {
 
         int maxSum = Integer.MIN_VALUE;
 
