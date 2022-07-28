@@ -70,14 +70,14 @@ public class ConvertNumberToWords {
             prefix = "negative";
         }
 
-        String current = "";
+        StringBuilder current = new StringBuilder();
         int place = 0;
 
         do {
             int n = number % 1000;
             if (n != 0) {
                 String s = convertLessThanOneThousand(n);
-                current = s + specialNames[place] + current;
+                current.insert(0, s + specialNames[place]);
             }
             place++;
             number /= 1000;
@@ -103,9 +103,4 @@ public class ConvertNumberToWords {
         return numNames[number] + " hundred" + current;
     }
 
-
-    public static void main(String[] args) {
-        ConvertNumberToWords convertNumberToWords = new ConvertNumberToWords();
-        System.out.println(convertNumberToWords.convert(81621954));
-    }
 }
