@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Given an array nums of distinct integers, return all the possible permutations.
+ * Given an array nums of distinct integers, return all the possible permutations (of same size).
  * You can return the answer in any order.
  */
 public class Permutations {
@@ -25,17 +25,14 @@ public class Permutations {
     }
 
     private void backTrack(List<Integer> list, int index, List<List<Integer>> result) {
-
-        if (index == list.size()) {
-            result.add(list);
+        if (index == list.size() - 1) {
+            result.add(new ArrayList<>(list));
+        } else {
+            for (int i = index; i < list.size(); i++) {
+                Collections.swap(list, index, i);
+                backTrack(list, index + 1, result);
+                Collections.swap(list, index, i);
+            }
         }
-
-        for (int i = index; i < list.size(); i++) {
-
-            Collections.swap(list, index, i);
-            backTrack(list, index, result);
-            Collections.swap(list, index, i);
-        }
-        
     }
 }
