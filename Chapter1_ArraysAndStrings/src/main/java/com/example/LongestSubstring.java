@@ -30,9 +30,8 @@ public class LongestSubstring {
 
             if (rightmostIndex.containsKey(s.charAt(right))) {
                 left = rightmostIndex.get(s.charAt(right)) + 1;
-                rightmostIndex.put(s.charAt(right), right);
             }
-
+            rightmostIndex.put(s.charAt(right), right);
             maxLength = Math.max(maxLength, right - left + 1);
             right++;
         }
