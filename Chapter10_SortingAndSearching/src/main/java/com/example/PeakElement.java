@@ -11,7 +11,7 @@ package com.example;
  */
 public class PeakElement {
 
-    public int findPeakElement(int[] nums) {
+    public int findPeakElementIndex(int[] nums) {
 
         int l = 0;
         int r = nums.length - 1;
