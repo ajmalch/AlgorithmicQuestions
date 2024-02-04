@@ -49,9 +49,9 @@ public class UniqueString {
     public static boolean isUniqueNoDataStructure(String input){
 
         if (input == null || input.isEmpty())
-        throw new IllegalArgumentException("input string can't be empty");
-        return !IntStream.iterate(0,i ->i<input.length(),i->i+1)
-                .anyMatch(i-> compareCharacter(input, i));
+            throw new IllegalArgumentException("input string can't be empty");
+        return IntStream.iterate(0, i -> i < input.length(), i -> i + 1)
+                .noneMatch(i -> compareCharacter(input, i));
 
     }
 
