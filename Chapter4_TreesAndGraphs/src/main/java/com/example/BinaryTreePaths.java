@@ -17,7 +17,7 @@ public class BinaryTreePaths {
         return paths;
     }
 
-    public void traverseTree(TreeNode node, String path, List<String> paths) {
+    private void traverseTree(TreeNode node, String path, List<String> paths) {
 
         if (node != null) {
             path += String.valueOf(node.val);
