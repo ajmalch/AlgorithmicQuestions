@@ -1,6 +1,6 @@
 package com.example;
 
-import java.util.Arrays;
+import java.util.*;
 
 /*
 Given two strings, write a method to decide if one is a permutation of the other
@@ -31,5 +31,41 @@ public class CheckPermutation {
         return new String(chars);
 
     }
+
+    /**
+     * O(n) time and O(n) space
+     *
+     * @param s1 first input string
+     * @param s2 second input string
+     * @return true if one is a permutation of the other
+     */
+    public boolean checkPermutation2(String s1, String s2) {
+
+        if (s1.length() != s2.length())
+            return false;
+
+        Map<Character, Integer> characterCountMap1 = new HashMap<>();
+        Map<Character, Integer> characterCountMap2 = new HashMap<>();
+
+        for (char c : s1.toCharArray()) {
+            characterCountMap1.put(c, characterCountMap1.getOrDefault(c, 0) + 1);
+        }
+        for (char c : s2.toCharArray()) {
+            characterCountMap2.put(c, characterCountMap2.getOrDefault(c, 0) + 1);
+        }
+
+        Set<Character> characters1 = characterCountMap1.keySet();
+        Set<Character> characters2 = characterCountMap2.keySet();
+        if (!characters1.containsAll(characters2))
+            return false;
+        for (char c : characters1) {
+            if (!Objects.equals(characterCountMap1.get(c), characterCountMap2.get(c)))
+                return false;
+        }
+
+        return true;
+    }
+
+
 }
 
