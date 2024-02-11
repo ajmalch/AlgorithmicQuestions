@@ -1,5 +1,8 @@
 package com.example;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
  * <p>
@@ -28,18 +31,31 @@ public class IntegerToRoman {
 
     static int[] values = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
 
-    static String[] symbols = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+    static  Map<Integer, String> intToRomanMap = new HashMap<>();
+    static {
+        intToRomanMap.put(1000, "M");
+        intToRomanMap.put(900, "CM");
+        intToRomanMap.put(500, "D");
+        intToRomanMap.put(400, "CD");
+        intToRomanMap.put(100,"C");
+        intToRomanMap.put(90,"XC");
+        intToRomanMap.put(50,"L");
+        intToRomanMap.put(40, "XL");
+        intToRomanMap.put(10, "X");
+        intToRomanMap.put(9, "IX");
+        intToRomanMap.put(5,"V");
+        intToRomanMap.put(4, "IV");
+        intToRomanMap.put(1, "I");
+    }
 
-    public static String intToRoman(int num) {
+    public String intToRoman(int num) {
         StringBuilder sb = new StringBuilder();
         int val = num;
         for (int i = 0; i < values.length && val > 0; i++) {
             if (val >= values[i]) {
                 int x = val / values[i];
                 val = val % values[i];
-                for (int j = 0; j < x; j++) {
-                    sb.append(symbols[i]);
-                }
+                sb.append(intToRomanMap.get(values[i]).repeat(x));
             }
 
         }
@@ -47,10 +63,4 @@ public class IntegerToRoman {
         return sb.toString();
     }
 
-
-    public static void main(String[] args) {
-
-
-        System.out.println("Integer to Roman of 98576 :" + intToRoman(98576));
-    }
 }
