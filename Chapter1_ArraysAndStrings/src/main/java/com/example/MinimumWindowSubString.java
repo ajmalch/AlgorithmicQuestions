@@ -2,10 +2,7 @@ package com.example;
 
 import org.apache.commons.lang3.tuple.Pair;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 /**
@@ -22,6 +19,61 @@ public class MinimumWindowSubString {
 
     //O(n) tme complexity using sliding window technique. O(n) space complexity
     public String minWindow(String s, String t) {
+
+        if (s.isEmpty() || t.isEmpty()) {
+            return "";
+        }
+
+        Map<Character, Integer> targetCharterCount = new HashMap<>();
+        for(char c : t.toCharArray()){
+            targetCharterCount.put(c, targetCharterCount.getOrDefault(c,0)+1);
+        }
+        int required = targetCharterCount.size();
+
+        int left = 0;
+        int right = 0;
+        int formed = 0;
+        int currLength = -1;
+
+        int currentStart = 0;
+        int currentEnd = 0;
+
+        Map<Character, Integer> windowCharacterCount = new HashMap<>();
+
+        while (right < s.length()){
+            final char currChar = s.charAt(right);
+            if(targetCharterCount.containsKey(currChar)){
+                windowCharacterCount.put(currChar, windowCharacterCount.getOrDefault(currChar,0)+1);
+                if(Objects.equals(windowCharacterCount.get(currChar), targetCharterCount.get(currChar))){
+                    formed++;
+                }
+
+                while(left<=right  && formed == required){
+                    if(currLength == -1  || right-left+1 < currLength){
+                        currLength = right-left+1;
+                        currentStart = left;
+                        currentEnd = right;
+                    }
+                    char leftChar = s.charAt(left);
+                    if(windowCharacterCount.containsKey(leftChar)){
+                        windowCharacterCount.put(leftChar, windowCharacterCount.get(leftChar)-1);
+                        if(windowCharacterCount.get(leftChar) < targetCharterCount.get(leftChar)){
+                            formed--;
+                        }
+                    }
+                    left++;
+                }
+            }
+
+            right++;
+        }
+
+        return currLength == -1 ? "" : s.substring(currentStart, currentEnd + 1);
+    }
+
+    //O(n) tme complexity using sliding window technique. O(n) space complexity
+    //Optimized if the input string contains many other charcters than present in target string
+    public String minWindowOptimized(String s, String t) {
 
         if (s.isEmpty() || t.isEmpty()) {
             return "";

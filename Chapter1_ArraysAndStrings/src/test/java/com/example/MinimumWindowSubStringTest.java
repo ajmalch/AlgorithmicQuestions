@@ -12,5 +12,6 @@ class MinimumWindowSubStringTest {
 
         assertEquals("BANC",minimumWindowSubString.minWindow("ADOBECODEBANC","ABC" ));
 
+        assertEquals("BANC",minimumWindowSubString.minWindowOptimized("ADOBECODEBANC","ABC" ));
     }
 }
