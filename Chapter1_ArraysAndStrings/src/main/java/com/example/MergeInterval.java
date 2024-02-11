@@ -10,12 +10,13 @@ import java.util.LinkedList;
  */
 public class MergeInterval {
 
+    //O(n log n) time complexity and O(n) space complexity
     public int[][] merge(int[][] intervals) {
         Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]));
         LinkedList<int[]> merged = new LinkedList<>();
 
         for (int[] interval : intervals) {
-            if (merged.isEmpty() || merged.getLast()[1] > interval[0]) {
+            if (merged.isEmpty() || merged.getLast()[1] < interval[0]) {
                 merged.add(interval);
             } else {
                 merged.getLast()[1] = Math.max(merged.getLast()[1], interval[1]);

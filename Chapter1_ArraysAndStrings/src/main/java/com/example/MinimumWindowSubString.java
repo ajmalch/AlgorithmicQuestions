@@ -1,5 +1,7 @@
 package com.example;
 
+import org.apache.commons.lang3.tuple.Pair;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,18 +20,14 @@ import java.util.Map;
 public class MinimumWindowSubString {
 
 
-    public static void main(String[] args) {
+    //O(n) tme complexity using sliding window technique. O(n) space complexity
+    public String minWindow(String s, String t) {
 
-        System.out.println("minWindow(\"ADOBECODEBANC\",\"ABC\") :" + minWindow("ADOBECODEBANC", "ABC"));
-    }
-
-    public static String minWindow(String s, String t) {
-
-        if (s.length() == 0 || t.length() == 0) {
+        if (s.isEmpty() || t.isEmpty()) {
             return "";
         }
 
-        Map<Character, Integer> dictT = new HashMap<Character, Integer>();
+        Map<Character, Integer> dictT = new HashMap<>();
 
         for (int i = 0; i < t.length(); i++) {
             int count = dictT.getOrDefault(t.charAt(i), 0);
@@ -40,16 +38,16 @@ public class MinimumWindowSubString {
 
         // Filter all the characters from s into a new list along with their index.
         // The filtering criteria is that the character should be present in t.
-        List<Map<Integer, Character>> filteredS = new ArrayList<>();
+        List<Pair<Integer, Character>> filteredS = new ArrayList<>();
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
             if (dictT.containsKey(c)) {
-                filteredS.add(Map.of(i, c));
+                filteredS.add(Pair.of(i, c));
             }
         }
 
         int l = 0, r = 0, formed = 0;
-        Map<Character, Integer> windowCounts = new HashMap<Character, Integer>();
+        Map<Character, Integer> windowCounts = new HashMap<>();
         int currentLength = -1;
         int currentStart = 0;
         int currentEnd = 0;
@@ -58,11 +56,7 @@ public class MinimumWindowSubString {
         // This helps to reduce our search.
         // Hence, we follow the sliding window approach on as small list.
         while (r < filteredS.size()) {
-            char c = filteredS.get(r)
-                    .values()
-                    .stream()
-                    .findFirst()
-                    .get();
+            char c = filteredS.get(r).getValue();
             int count = windowCounts.getOrDefault(c, 0);
             windowCounts.put(c, count + 1);
 
@@ -74,23 +68,11 @@ public class MinimumWindowSubString {
 
             // Try and contract the window till the point where it ceases to be 'desirable'.
             while (l <= r && formed == required) {
-                c = filteredS.get(l)
-                        .values()
-                        .stream()
-                        .findFirst()
-                        .get();
+                c = filteredS.get(l).getValue();
 
                 // Save the smallest window until now.
-                int end = filteredS.get(r)
-                        .keySet()
-                        .stream()
-                        .findFirst()
-                        .get();
-                int start = filteredS.get(l)
-                        .keySet()
-                        .stream()
-                        .findFirst()
-                        .get();
+                int end = filteredS.get(r).getKey();
+                int start = filteredS.get(l).getKey();
                 if (currentLength == -1 || end - start + 1 < currentLength) {
                     currentLength = end - start + 1;
                     currentStart = start;
@@ -98,9 +80,7 @@ public class MinimumWindowSubString {
                 }
 
                 windowCounts.put(c, windowCounts.get(c) - 1);
-                if (dictT.containsKey(c) && windowCounts.get(c)
-                        .intValue() < dictT.get(c)
-                        .intValue()) {
+                if (dictT.containsKey(c) && windowCounts.get(c) < dictT.get(c)) {
                     formed--;
                 }
                 l++;

@@ -8,6 +8,7 @@ import java.util.Map;
  */
 public class FirstUnique {
 
+    //O(n) time complexity and O(n) space complexity
     public int firstUniqChar(String s) {
 
         Map<Character, Integer> map = new HashMap<>();

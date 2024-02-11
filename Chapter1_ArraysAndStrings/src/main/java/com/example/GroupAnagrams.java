@@ -16,10 +16,11 @@ public class GroupAnagrams {
 
     //O(n*l) time complexity where n is the number of words and l is the length of each word
     //O(n+l) space complexity
+    //Assuming that the string contains only lowercase english alphabets
     public List<List<String>> groupAnagrams(String[] strs) {
         Map<String, List<String>> map = new HashMap<>();
         for (String str : strs) {
-            Map<Integer, Integer> countMap = new HashMap<>();
+            Map<Integer, Integer> countMap = new HashMap<>();  // map to store the count of each letters
             IntStream.range(0, str.length())
                     .forEach(
                             i -> countMap.put(str.charAt(i) - 'a'

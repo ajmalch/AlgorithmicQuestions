@@ -11,6 +11,7 @@ import java.util.Map;
 public class LongestSubstring {
 
 
+    //O(n) tme complexity using sliding window technique. O(n) space complexity
     public int longestSubstring(String s) {
 
         if (s == null) {
@@ -44,10 +45,12 @@ public class LongestSubstring {
     /**
      * Given a string s and an integer k, return the length of the longest substring of s that contains at most k distinct characters.
      *
-     * @param s
-     * @param k
+     * @param s input string
+     * @param k input integer
      * @return length of the longest substring of s that contains at most k distinct characters
      */
+
+    //O(n) tme complexity using sliding window technique. O(n) space complexity
     public int lengthOfLongestSubstringKDistinct(String s, int k) {
 
         int n = s.length();
@@ -63,9 +66,8 @@ public class LongestSubstring {
 
         while (right < n) {
             Character c = s.charAt(right);
-            if (map.containsKey(c)) {
-                map.remove(c);
-            }
+            //remove and put with new value to keep the position in linked HashMap
+            map.remove(c);
             map.put(c, right++);
 
             if (map.size() == k + 1) {
