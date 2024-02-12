@@ -10,6 +10,8 @@ class PalindromeCheckTest {
 
     @Test
     void checkPalindromeTest() {
+
         assertTrue(palindromeCheck.checkPalindrom("abcdcba"));
+        assertFalse(palindromeCheck.checkPalindrom("ajmalcholassery"));
     }
 }

@@ -9,13 +9,8 @@ package com.example;
  * */
 public class StringCompression {
 
-    public static void main(String[] args) {
 
-        System.out.println(compressed("abcccaaaadd"));
-        System.out.println(compressed("ajmal"));
-    }
-
-    static String compressed(String input){
+    public String compressed(String input){
 
         StringBuilder compressed = new StringBuilder();
 

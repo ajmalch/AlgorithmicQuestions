@@ -12,15 +12,6 @@ pale,bake -> false
 */
 public class OneAway {
 
-    public static void main(String[] args) {
-
-        System.out.println("pale, ple -> " + isOneEditAway("pale", "ple"));
-        System.out.println("pales, pale -> " + isOneEditAway("pales", "pale"));
-        System.out.println("pale, pale -> " + isOneEditAway("pale", "pale"));
-        System.out.println("pales, pal -> " + isOneEditAway("pales", "pal"));
-        System.out.println("pale, bale -> " + isOneEditAway("pale", "bale"));
-        System.out.println("pale, bake -> " + isOneEditAway("pale", "bake"));
-    }
 
 //    public static boolean isOneEditAway(String first, String second){
 //
@@ -68,7 +59,7 @@ public class OneAway {
 //
 //    }
 
-    private static boolean isOneEditAway(String first, String second) {
+    public boolean isOneEditAway(String first, String second) {
 
         int firstLength = first.length();
         int secondLength = second.length();

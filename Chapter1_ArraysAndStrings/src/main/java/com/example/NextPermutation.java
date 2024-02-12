@@ -9,19 +9,21 @@ package com.example;
  */
 public class NextPermutation {
 
+    //O(n) time complexity algorith
     public void nextPermutation(int[] nums) {
         int i = nums.length - 2;
+        //find first dip from right (if there)
         while (i >= 0 && nums[i + 1] <= nums[i]) {
             i--;
         }
-        if (i >= 0) {
+        if (i >= 0) { //if the dip is found, find the first number from right which is higher than the dip number (there should be one as we found a dip)
             int j = nums.length - 1;
             while (j >= 0 && nums[j] <= nums[i]) {
                 j--;
             }
-            swap(nums, i, j);
+            swap(nums, i, j); //swap the number found and the dip.
         }
-        reverse(nums, i + 1);
+        reverse(nums, i + 1); // after swapping , reverse the right side to get smaller permutation(the right side numbers are already sorted at this stage)
     }
 
     private void reverse(int[] nums, int start) {

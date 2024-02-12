@@ -19,7 +19,7 @@ package com.example;
 
 public class RemoveDuplicates {
 
-    public int removeDuplicates(int[] nums) {
+    public int  removeDuplicates(int[] nums) {
 
         int leftIndex = 0;
         int rightIndex = 0;

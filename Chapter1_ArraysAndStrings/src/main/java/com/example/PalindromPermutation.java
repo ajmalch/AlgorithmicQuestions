@@ -44,10 +44,10 @@ public class PalindromPermutation {
     }
 
     /**
-     * This soluition uses bit vector approach to get more performing solution
+     * This solution uses bit vector approach to get more performing solution
      *
-     * @param input
-     * @return
+     * @param input input string
+     * @return return true if input is a palindrome permutation
      */
     public static boolean isPalindromePermutationBitVector(String input) {
 
@@ -61,8 +61,8 @@ public class PalindromPermutation {
     /**
      * Check exactly one bit is set by subtracting one from the integer and ANDing it with the original integer
      *
-     * @param bitVector
-     * @return
+     * @param bitVector input bit vector
+     * @return return true if exacly one bit is set
      */
     private static boolean checkExactlyOneBitSet(int bitVector) {
 
@@ -72,8 +72,8 @@ public class PalindromPermutation {
     /**
      * Create a bit vector for the string. For each letter with value i, toggle the ith bit
      *
-     * @param input
-     * @return
+     * @param input input string
+     * @return  bit vector
      */
     private static int createBitVector(String input) {
 
@@ -91,9 +91,9 @@ public class PalindromPermutation {
     /**
      * Toggle the ith bit in the integer
      *
-     * @param bitVector
-     * @param index
-     * @return
+     * @param bitVector input bit vector
+     * @param index the index to toggle
+     * @return toggled(at index) bit vector
      */
     private static int toggle(int bitVector, int index) {
         if (index < 0)
