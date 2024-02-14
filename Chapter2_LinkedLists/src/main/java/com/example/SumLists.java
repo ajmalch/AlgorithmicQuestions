@@ -1,7 +1,5 @@
 package com.example;
 
-import java.util.stream.IntStream;
-
 /**
  * You have two numbers represented by two linked list where each node contain a single digit.
  * The digits are stored in reverse order, such that 1's digit is at the head of the list.
@@ -22,16 +20,16 @@ import java.util.stream.IntStream;
 public class SumLists {
 
     public static void main(String[] args) {
-        LinkedListNode<Integer> n11 = new LinkedListNode(7);
-        LinkedListNode<Integer> n12 = new LinkedListNode(1);
-        LinkedListNode<Integer> n13 = new LinkedListNode(6);
+        LinkedListNode<Integer> n11 = new LinkedListNode<>(7);
+        LinkedListNode<Integer> n12 = new LinkedListNode<>(1);
+        LinkedListNode<Integer> n13 = new LinkedListNode<>(6);
         n11.setNext(n12);
         n12.setNext(n13);
 
 
-        LinkedListNode<Integer> n21 = new LinkedListNode(5);
-        LinkedListNode<Integer> n22 = new LinkedListNode(9);
-        LinkedListNode<Integer> n23 = new LinkedListNode(2);
+        LinkedListNode<Integer> n21 = new LinkedListNode<>(5);
+        LinkedListNode<Integer> n22 = new LinkedListNode<>(9);
+        LinkedListNode<Integer> n23 = new LinkedListNode<>(2);
         n21.setNext(n22);
         n22.setNext(n23);
 
@@ -40,16 +38,18 @@ public class SumLists {
         System.out.println(n21.printForward());
 
         System.out.println("output ");
-        System.out.println(addLists(n11, n21, 0).printForward());
+        final LinkedListNode<Integer> addLists = addLists(n11, n21, 0);
+        if(addLists != null) System.out.println(addLists.printForward());
+        System.out.println(addForwardLists(n11, n21).printForward());
 
     }
 
-    private static LinkedListNode addLists(LinkedListNode<Integer> list1, LinkedListNode<Integer> list2 , int carry) {
+    private static LinkedListNode<Integer> addLists(LinkedListNode<Integer> list1, LinkedListNode<Integer> list2 , int carry) {
 
         if(list1 == null && list2 == null && carry == 0)
             return  null;
 
-        LinkedListNode result = new LinkedListNode();
+        LinkedListNode<Integer> result = new LinkedListNode<>();
         int value = carry;
 
         if(list1 != null ){
@@ -82,15 +82,28 @@ public class SumLists {
         }
 
         int i= l1-l2;
-        for (int j = 0; j <= i; j++) {
+        for (int j = 0; j < i; j++) {
             LinkedListNode<Integer> zeroNode = new LinkedListNode<>(0);
             zeroNode.setNext(list1);
             list1 = zeroNode;
         }
 
-        LinkedListNode result = new LinkedListNode();
+        LinkedListNode<Integer> result = new LinkedListNode<>(0);
+        LinkedListNode<Integer> resultRunner = result;
 
-        return  result;
+        while (list1 != null){
+
+            resultRunner.next = new LinkedListNode<>((list1.data + list2.data) % 10);
+            if(list1.data + list2.data >= 10) {
+                resultRunner.data = resultRunner.data+1;
+            }
+            resultRunner = resultRunner.next;
+            list1 = list1.next;
+            list2 = list2.next;
+        }
+
+
+        return  result.data==0?result.next:result;
 
     }
 
