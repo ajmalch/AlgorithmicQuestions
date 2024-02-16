@@ -2,15 +2,15 @@ package com.example;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
-class LowestCommonAncestorTest {
+class DistanceBetweenNodesTest {
 
-
-    LowestCommonAncestor lowestCommonAncestor = new LowestCommonAncestor();
+    DistanceBetweenNodes distanceBetweenNodes = new DistanceBetweenNodes();
 
     @Test
-    void lowestCommonAncestorTest() {
+    void distanceBetweenNodes() {
+
 
         TreeNode root = new TreeNode(1);
         root.left = new TreeNode(2);
@@ -23,6 +23,6 @@ class LowestCommonAncestorTest {
         root.right.right.left.right = new TreeNode(9);
         root.right.right.right = new TreeNode(10);
 
-        assertEquals(root.right, lowestCommonAncestor.lowestCommonAncestor(root, root.right.left.left, root.right.right.left));
+        assertEquals(4, distanceBetweenNodes.distanceBetweenNodes(root, root.right.left.left, root.right.right.left));
     }
 }
