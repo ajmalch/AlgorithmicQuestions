@@ -10,32 +10,30 @@ import java.util.List;
  */
 public class Subsets {
 
-    List<List<Integer>> output = new ArrayList<>();
-    int n;
-    int k;
+
 
     public List<List<Integer>> subsets(int[] nums) {
 
-        n = nums.length;
-        for (k = 0; k <= n; k++) {
-            backTrack(0, new ArrayList<Integer>(), nums);
+        List<List<Integer>> result = new ArrayList<>();
+        for (int i = 0; i <= nums.length; i++) {
+            backTrack(nums, i, 0, new ArrayList<>(),  result);
         }
-
-        return output;
+        return result;
     }
 
-    private void backTrack(int index, List<Integer> curr, int[] nums) {
+    private void backTrack(int[] nums, int size, int index, List<Integer> list, List<List<Integer>> result) {
 
-        if (curr.size() == k) {
-            output.add(new ArrayList(curr));
+        if(size == list.size()){
+            result.add(new ArrayList<>(list));
             return;
         }
-        for (int i = index; i < n; i++) {
-
-            curr.add(nums[i]);
-            backTrack(i + 1, curr, nums);
-            curr.remove(curr.size() - 1);
+        for (int i = index ; i< nums.length; i++) {
+            list.add(nums[i]);
+            backTrack(nums,size,i+1, list, result);
+            list.remove(list.size()-1);
         }
+
     }
+
 
 }

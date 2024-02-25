@@ -11,39 +11,35 @@ import java.util.List;
 public class StrobogrammaticNumber {
 
 
-    int target;
-
     public List<String> findStrobogrammatic(int n) {
-        target = n;
-        return find(n);
+        return find(n, n);
     }
 
-    private List<String> find(int n) {
-
+    private List<String> find(int n, int target){
         List<String> result = new ArrayList<>();
-        if (n == 0) {
+        if(n == 0){
             result.add("");
             return result;
         }
-        if (n == 1) {
+        if(n == 1 ){
             result.add("0");
             result.add("1");
             result.add("8");
-
             return result;
         }
 
-        List<String> prev = find(n - 2);
+        List<String> prev = find(n-2, target);
+        for(String s : prev){
 
-        for (String s : prev) {
             result.add("1" + s + "1");
             result.add("6" + s + "9");
-            result.add("8" + s + "8");
             result.add("9" + s + "6");
-            if (n < target)
+            result.add("8" + s + "8");
+            if (n<target) {
                 result.add("0" + s + "0");
+            }
         }
-
         return result;
     }
+
 }
