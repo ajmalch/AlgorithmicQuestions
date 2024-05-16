@@ -1,5 +1,6 @@
 package com.example;
 
+import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.Random;
 
@@ -13,7 +14,7 @@ public class KthLargestElement {
     public int findKthLargest(int[] nums, int k) {
         // init heap 'the smallest element first'
         PriorityQueue<Integer> heap =
-                new PriorityQueue<Integer>((n1, n2) -> n1 - n2);
+                new PriorityQueue<>(Comparator.comparingInt(n -> n));
 
         // keep k largest elements in the heap
         for (int n : nums) {
@@ -23,7 +24,7 @@ public class KthLargestElement {
         }
 
         // output
-        return heap.poll();
+        return heap.isEmpty()?-1:heap.poll();
     }
 
 
