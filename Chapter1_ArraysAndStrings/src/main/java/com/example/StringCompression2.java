@@ -15,6 +15,7 @@ package com.example;
 
 class StringCompression2 {
 
+    //O(n) time complexity and O(1) space complexity
     public String runLengthEncoding(String string) {
 
         int count = 0;

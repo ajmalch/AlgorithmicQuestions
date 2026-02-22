@@ -10,24 +10,24 @@ package com.example;
 public class StringCompression {
 
 
+    // Time complexity O(n), space complexity O(n)
     public String compressed(String input){
-
+        // StringBuilder to build the compressed string efficiently
         StringBuilder compressed = new StringBuilder();
 
-        int countConsecutive = 0;
+        int countConsecutive = 0; // Counter for consecutive repeated characters
         for (int i = 0; i < input.length(); i++) {
+            countConsecutive++; // Increment count for current character
 
-            countConsecutive++;
-
-            //Check if current letter is same as next letter or if current one is the last letter
+            // Check if current letter is different from next letter or if it's the last character
             if(i == input.length()-1 || input.charAt(i)!=input.charAt(i+1)){
-                compressed.append(input.charAt(i));
-                compressed.append(countConsecutive);
-                countConsecutive=0;
+                compressed.append(input.charAt(i)); // Append character
+                compressed.append(countConsecutive); // Append count
+                countConsecutive=0; // Reset counter for next character sequence
             }
         }
+        // Return compressed string only if it's shorter than the original
         return  compressed.length()<input.length()?compressed.toString():input;
     }
 
 }
-
